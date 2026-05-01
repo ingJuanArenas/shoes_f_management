@@ -51,7 +51,8 @@ public class ExpenseRepositoryImpl implements ExpenseRepository {
 
     @Override
     public void delete(Long id) {
-       expenseCRUD.deleteById(id);
+        var expense = expenseCRUD.findById(id).orElseThrow(() -> new NotFoundException("Expense not found"));
+        expenseCRUD.delete(expense);
     }
     
 }

@@ -49,7 +49,8 @@ public class ShoeRepositoryImpl implements ShoeRepository {
 
     @Override
     public void delete(Long id) {
-        shoeCRUD.deleteById(id);
+        var shoe = shoeCRUD.findById(id).orElseThrow(() -> new NotFoundException("Shoe not found"));
+        shoeCRUD.delete(shoe);
     }
     
 }

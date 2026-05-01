@@ -57,7 +57,8 @@ public class CustomerRepositoryImpl implements CustomerRepository  {
 
     @Override
     public void delete(Long id) {
-        customerCRUD.deleteById(id);
+        var customer = customerCRUD.findById(id).orElseThrow(() -> new NotFoundException("Customer not found"));
+        customerCRUD.delete(customer);
     }
 
     
