@@ -3,7 +3,7 @@ GET http://localhost:8080/api/customers
 Accept: application/json
 
 ### Get customer by id
-GET http://localhost:8080/api/customers/2
+GET http://localhost:8080/api/customers/1
 Accept: application/json
 
 ### Create a new customer
@@ -16,7 +16,7 @@ Content-Type: application/json
 }
 
 ### Update an existing customer
-PUT http://localhost:8080/api/customers/2
+PUT http://localhost:8080/api/customers/1
 Content-Type: application/json
 
 {
