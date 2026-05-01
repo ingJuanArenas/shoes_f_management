@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.shoes_f_management.Domain.DTOs.Requests.CustomerRequestDto;
 import com.shoes_f_management.Domain.DTOs.Responses.CustomerResponseDTO;
+import com.shoes_f_management.Domain.Exceptions.NotFoundException;
 import com.shoes_f_management.Persistence.Repositories.CustomerRepositoryImpl;
 
 
@@ -20,7 +21,10 @@ public class CustomerService implements ServiceInterface<CustomerResponseDTO,Cus
 
     @Override
     public List<CustomerResponseDTO> getAll() {
-      return customerRepository.getAll();
+      var customers = customerRepository.getAll();
+      if (customers.isEmpty()) throw new NotFoundException("No customers found");
+
+      return customers;
     }
 
     @Override

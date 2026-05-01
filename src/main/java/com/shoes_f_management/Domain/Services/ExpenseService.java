@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.shoes_f_management.Domain.DTOs.Requests.ExpenseRequestDto;
 import com.shoes_f_management.Domain.DTOs.Responses.ExpenseResponseDTO;
+import com.shoes_f_management.Domain.Exceptions.NotFoundException;
 import com.shoes_f_management.Persistence.Repositories.ExpenseRepositoryImpl;
 
 @Service
@@ -19,7 +20,10 @@ public class ExpenseService implements ServiceInterface<ExpenseResponseDTO,Expen
 
     @Override
     public List<ExpenseResponseDTO> getAll() {
-       return expenseRepository.getAll();
+       var expenses =  expenseRepository.getAll();
+       if (expenses.isEmpty()) throw new NotFoundException("No expenses found");
+
+      return expenses;
     }
 
     @Override

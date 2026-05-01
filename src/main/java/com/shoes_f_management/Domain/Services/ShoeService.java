@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.shoes_f_management.Domain.DTOs.Requests.ShoeRequestDto;
 import com.shoes_f_management.Domain.DTOs.Responses.ShoeResponseDTO;
+import com.shoes_f_management.Domain.Exceptions.NotFoundException;
 import com.shoes_f_management.Persistence.Repositories.ShoeRepositoryImpl;
 
 @Service
@@ -19,7 +20,10 @@ public class ShoeService implements ServiceInterface<ShoeResponseDTO,ShoeRequest
 
     @Override
     public List<ShoeResponseDTO> getAll() {
-        return shoeRepository.getAll();
+        var shoes=  shoeRepository.getAll();
+        if (shoes.isEmpty()) throw new NotFoundException("No shoes found");
+
+      return shoes;
     }
     @Override
     public ShoeResponseDTO getById(Long id) {
