@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.shoes_f_management.Domain.DTOs.Requests.ExpenseRequestDto;
 import com.shoes_f_management.Domain.DTOs.Responses.ExpenseResponseDTO;
+import com.shoes_f_management.Domain.Exceptions.NotFoundException;
 import com.shoes_f_management.Domain.Repositories.ExpenseRepository;
 import com.shoes_f_management.Persistence.CRUDs.ExpenseCRUD;
 import com.shoes_f_management.Persistence.Mappers.ExpenseMapper;
@@ -31,7 +32,7 @@ public class ExpenseRepositoryImpl implements ExpenseRepository {
 
     @Override
     public ExpenseResponseDTO getById(Long id) {
-       var expense = expenseCRUD.findById(id).orElseThrow(() -> new IllegalArgumentException("Expense not found"));
+       var expense = expenseCRUD.findById(id).orElseThrow(() -> new NotFoundException("Expense not found"));
        return expenseMapper.toDTO(expense);
     }
 
@@ -43,7 +44,7 @@ public class ExpenseRepositoryImpl implements ExpenseRepository {
 
     @Override
     public ExpenseResponseDTO update(Long id, ExpenseRequestDto entity) {
-        var expense = expenseCRUD.findById(id).orElseThrow(() -> new IllegalArgumentException("Expense not found"));
+        var expense = expenseCRUD.findById(id).orElseThrow(() -> new NotFoundException("Expense not found"));
         expenseMapper.updateEntityFromDTO(entity, expense);
         return expenseMapper.toDTO(expenseCRUD.save(expense));
     }
