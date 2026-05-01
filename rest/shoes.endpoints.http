@@ -38,3 +38,6 @@ Content-Type: application/json
 
 ### Delete a shoe
 DELETE http://localhost:8080/api/shoes/1
+
+
+
