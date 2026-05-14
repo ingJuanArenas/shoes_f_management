@@ -46,8 +46,6 @@ public class Sale {
 
     private String notes;
 
-    @Column(unique = true)
-    private String invoiceNumber;
 
     @Column(nullable = false)
     private LocalDateTime createdAt;

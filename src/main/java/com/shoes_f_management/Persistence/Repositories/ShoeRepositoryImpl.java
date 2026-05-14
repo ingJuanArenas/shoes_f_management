@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.shoes_f_management.Domain.DTOs.Requests.ShoeRequestDto;
 import com.shoes_f_management.Domain.DTOs.Responses.ShoeResponseDTO;
+import com.shoes_f_management.Domain.Exceptions.NotFoundException;
 import com.shoes_f_management.Domain.Repositories.ShoeRepository;
 import com.shoes_f_management.Persistence.CRUDs.ShoeCRUD;
 import com.shoes_f_management.Persistence.Mappers.ShoeMapper;
@@ -27,7 +28,7 @@ public class ShoeRepositoryImpl implements ShoeRepository {
 
     @Override
     public ShoeResponseDTO getById(Long id) {
-        var shoe = shoeCRUD.findById(id).orElseThrow(() -> new RuntimeException("Shoe not found"));
+        var shoe = shoeCRUD.findById(id).orElseThrow(() -> new NotFoundException("Shoe not found"));
         return shoeMapper.toDTO(shoe);
     }
 
@@ -40,7 +41,7 @@ public class ShoeRepositoryImpl implements ShoeRepository {
 
     @Override
     public ShoeResponseDTO update(Long id, ShoeRequestDto entity) {
-        var shoe = shoeCRUD.findById(id).orElseThrow(() -> new RuntimeException("Shoe not found"));
+        var shoe = shoeCRUD.findById(id).orElseThrow(() -> new NotFoundException("Shoe not found"));
         shoeMapper.updateEntityFromDTO(entity, shoe);
         var updatedShoe = shoeCRUD.save(shoe);
         return shoeMapper.toDTO(updatedShoe);
@@ -48,7 +49,8 @@ public class ShoeRepositoryImpl implements ShoeRepository {
 
     @Override
     public void delete(Long id) {
-        shoeCRUD.deleteById(id);
+        var shoe = shoeCRUD.findById(id).orElseThrow(() -> new NotFoundException("Shoe not found"));
+        shoeCRUD.delete(shoe);
     }
     
 }

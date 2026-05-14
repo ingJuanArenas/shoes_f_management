@@ -24,7 +24,7 @@ Content-Type: application/json
 {
   "description": "Office rent",
   "amount": 1250.00,
-  "category": "RENT",
+  "category": "OTHER",
   "date": "2026-05-01T00:00:00"
 }
 

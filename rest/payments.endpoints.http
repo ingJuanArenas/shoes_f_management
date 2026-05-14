@@ -1,0 +1,58 @@
+### Get all payments
+GET http://localhost:8080/api/payments
+Authorization: Basic dXNlcjE6dXNlcg==
+Accept: application/json
+
+### Get payment by id
+GET http://localhost:8080/api/payments/2
+Accept: application/json
+
+### Create a new payment
+POST http://localhost:8080/api/payments
+Content-Type: application/json
+
+{
+  "saleId": 7,
+  "amount": 219.92,
+  "paymentMethod": "NEQUI",
+  "notes": "First payment",
+  "paymentDate": null
+}
+
+### Create a second payment (partial)
+POST http://localhost:8080/api/payments
+Content-Type: application/json
+
+{
+  "saleId": 8,
+  "amount": 310.00,
+  "paymentMethod": "NEQUI",
+  "notes": " payment via app"
+}
+
+### Create a payment via transfer
+POST http://localhost:8080/api/payments
+Content-Type: application/json
+
+{
+  "saleId": 2,
+  "amount": 250.00,
+  "paymentMethod": "TRANSFER",
+  "notes": "Bank transfer payment",
+  "paymentDate": null
+}
+
+### Update an existing payment
+PUT http://localhost:8080/api/payments/1
+Content-Type: application/json
+
+{
+  "saleId": 1,
+  "amount": 200.00,
+  "paymentMethod": "TRANSFER",
+  "notes": "Updated payment amount",
+  "paymentDate": null
+}
+
+### Delete a payment
+DELETE http://localhost:8080/api/payments/1

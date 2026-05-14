@@ -1,0 +1,48 @@
+### Get all sales
+GET http://localhost:8080/api/sales
+Authorization: Basic dXNlcjE6dXNlcg==
+Accept: application/json
+
+### Get sale by id
+GET http://localhost:8080/api/sales/3
+Accept: application/json
+
+
+### Create a new sale (Credit with items)
+POST http://localhost:8080/api/sales
+Authorization: Basic user1:user
+Content-Type: application/json
+
+{
+  "customerId": 3,
+  "total": 0,
+  "modality": "CREDIT",
+  "paymentMethod": "NEQUI",
+  "notes": "Credit sale with shoes",
+  "saleItems": [
+    {
+      "saleId": null,
+      "shoeId": 3,
+      "quantity": 1,
+      "unitPrice": 15.99
+    }
+  ]
+}
+
+### Update an existing sale
+PUT http://localhost:8080/api/sales/7
+Content-Type: application/json
+
+{
+  "customerId": 1,
+  "total": 0,
+  "modality": "CREDIT",
+  "paymentMethod": "TRANSFER",
+  "notes": "Updated sale notes",
+  "createdAt": null,
+  "saleItems": null
+}
+
+### Delete a sale
+DELETE http://localhost:8080/api/sales/6
+Authorization: Basic YWRtaW46YWRtaW4=
