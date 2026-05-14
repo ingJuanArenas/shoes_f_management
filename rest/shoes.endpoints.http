@@ -3,7 +3,7 @@ GET http://localhost:8080/api/shoes
 Accept: application/json
 
 ### Get shoe by id
-GET http://localhost:8080/api/shoes/1
+GET http://localhost:8080/api/shoes/3
 Accept: application/json
 
 ### Create a new shoe
@@ -22,13 +22,13 @@ Content-Type: application/json
 }
 
 ### Update an existing shoe
-PUT http://localhost:8080/api/shoes/1
+PUT http://localhost:8080/api/shoes/3
 Content-Type: application/json
 
 {
   "reference": "SHOE-001",
   "modelName": "Runner Pro X",
-  "color": "Black",
+  "color": "Gray",
   "size": 42.5,
   "initialStock": 60,
   "costPrice": 47.00,

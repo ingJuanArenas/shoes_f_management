@@ -11,8 +11,8 @@ POST http://localhost:8080/api/customers
 Content-Type: application/json
 
 {
-  "name": "Jane Doe",
-  "phoneNumber": "555-1234"
+  "name": "Jane ",
+  "phoneNumber": "555-234"
 }
 
 ### Update an existing customer
