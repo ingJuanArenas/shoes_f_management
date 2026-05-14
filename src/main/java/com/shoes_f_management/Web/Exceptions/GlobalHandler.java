@@ -1,6 +1,7 @@
 package com.shoes_f_management.Web.Exceptions;
 
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -55,6 +56,12 @@ public class GlobalHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Error> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
         Error error = new Error("Method Argument Not Valid", ex.toString());
+        return ResponseEntity.status(400).body(error);
+    }
+
+    @ExceptionHandler(InvalidDataAccessApiUsageException.class)
+    public ResponseEntity<Error> handleInvalidDataAccessApiUsageException(InvalidDataAccessApiUsageException ex) {
+        Error error = new Error("Invalid Data Access API Usage", ex.toString());
         return ResponseEntity.status(400).body(error);
     }
 
